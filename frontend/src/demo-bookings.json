@@ -1,0 +1,1 @@
+[{"id":"AX-1001","vehicle":{"id":"C-02","name":"Audi R8 V10","type":"Car","ratePerDay":24000.0,"engine":"5.2L V10","seats":2,"fuel":"Petrol","image":"/img/car-2.jpg","available":false},"customer":{"name":"Demo Customer","phone":"9800000000"},"days":3,"total":72000.0,"active":true,"actualDays":0,"lateFee":0.0}]

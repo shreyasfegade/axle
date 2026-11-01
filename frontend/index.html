@@ -1,0 +1,373 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AXLE — Vehicle Rental Studio</title>
+  <meta name="description" content="AXLE: rent cars, bikes and SUVs. A Java OOP project.">
+  <link rel="preload" href="/fonts/GeneralSans-600.woff2" as="font" type="font/woff2" crossorigin>
+</head>
+<body>
+  <!-- Intro loader -->
+  <div class="loader" aria-hidden="true">
+    <div class="loader-panel top"></div>
+    <div class="loader-panel bottom"></div>
+    <div class="loader-inner">
+      <svg class="loader-mark" viewBox="0 0 560 140"><text x="4" y="122">AXLE</text></svg>
+      <div class="loader-meta mono"><span>Studio 01 · Loading film</span><span class="loader-count">000</span></div>
+    </div>
+  </div>
+
+  <div class="grain" aria-hidden="true"></div>
+  <div class="progress" aria-hidden="true"><span></span></div>
+  <div class="cursor-ring" aria-hidden="true"><span class="cursor-label"></span></div>
+  <div class="cursor" aria-hidden="true"></div>
+  <div class="rail mono" aria-hidden="true"><span class="rail-num">01</span><span class="rail-bar"><i></i></span><span class="rail-name">Lights on</span></div>
+
+  <nav class="nav">
+    <a href="#top" class="nav-logo">AXLE</a>
+    <div class="nav-links mono">
+      <a href="#rates" data-scramble>Rule book</a>
+      <a href="#fleet" data-scramble>Fleet</a>
+      <a href="#rentals" data-scramble>My rentals</a>
+    </div>
+    <div class="nav-right">
+      <span class="nav-live mono"><i class="dot"></i><span id="liveCount">—</span> available</span>
+      <a href="#fleet" class="btn btn-signal magnetic"><span>Book now</span></a>
+    </div>
+  </nav>
+
+  <main class="page">
+    <!-- FILM: a Blender-rendered studio shoot, scrubbed by scroll -->
+    <section class="film" id="top" data-chapter="Lights on">
+      <div class="film-stage">
+        <canvas class="film-canvas" aria-label="A Mercedes-AMG GT lit in a dark studio, rotating as you scroll"></canvas>
+
+        <div class="film-ui">
+          <p class="eyebrow mono"><span>(AX—26)</span><span>Studio 01 · Mercedes-AMG GT</span></p>
+
+          <div class="chapter ch-hero" data-from="0" data-to="46">
+            <h1 class="headline">
+              <span class="hl-line"><span class="hl-inner">DRIVE</span></span>
+              <span class="hl-line"><span class="hl-inner">WHAT</span></span>
+              <span class="hl-line"><span class="hl-inner">MOVES YOU</span></span>
+            </h1>
+          </div>
+
+          <div class="chapter ch-copy ch-top" data-from="66" data-to="116">
+            <p class="ch-kicker mono">02 — Walkaround</p>
+            <h2 class="ch-title">Long hood. Short tail.<br>V8 in the middle.</h2>
+          </div>
+          <div class="chapter ch-specrow" data-from="70" data-to="116">
+            <dl class="ch-specs mono">
+              <div><dt>Engine</dt><dd>4.0L V8 Biturbo</dd></div>
+              <div><dt>0–100 km/h</dt><dd>3.8 s</dd></div>
+              <div><dt>Top speed</dt><dd>310 km/h</dd></div>
+            </dl>
+          </div>
+
+          <div class="chapter ch-copy" data-from="124" data-to="176">
+            <p class="ch-kicker mono">03 — Details</p>
+            <h2 class="ch-title">Stopping power,<br>in signal orange.</h2>
+          </div>
+
+          <div class="chapter ch-copy ch-cta" data-from="222" data-to="239">
+            <p class="ch-kicker mono">04 — Yours from</p>
+            <h2 class="ch-title">Mercedes-AMG GT</h2>
+            <p class="ch-price mono"><span class="signal" id="filmPrice">₹22,000</span> / day · <span id="filmStatus">checking…</span></p>
+            <div class="ch-actions">
+              <button class="btn btn-signal magnetic" id="filmBook" type="button"><span>Book this car</span></button>
+              <a class="btn btn-ghost magnetic" href="#fleet"><span>See the fleet</span></a>
+            </div>
+          </div>
+
+          <div class="callout" data-anchor="badge" data-from="72" data-to="100"><i class="c-dot"></i><i class="c-line"></i><span class="c-text mono">V8 Biturbo<b>Side vent badge</b></span></div>
+          <div class="callout" data-anchor="exhaust" data-from="104" data-to="118"><i class="c-dot"></i><i class="c-line"></i><span class="c-text mono">Quad exhaust<b>Centre diffuser</b></span></div>
+          <div class="callout" data-anchor="wheel" data-from="126" data-to="176"><i class="c-dot"></i><i class="c-line"></i><span class="c-text mono">20″ forged wheel<b>Orange calipers</b></span></div>
+          <div class="callout" data-anchor="head" data-from="182" data-to="206"><i class="c-dot"></i><i class="c-line"></i><span class="c-text mono">LED headlamps<b>Ignition DRL</b></span></div>
+
+          <div class="rig mono" data-from="0" data-to="58">
+            <p class="rig-title">Light rig</p>
+            <ol>
+              <li data-on="7"><i></i>DRL · ignition</li>
+              <li data-on="19"><i></i>Key · top softbox</li>
+              <li data-on="29"><i></i>Strip · left</li>
+              <li data-on="39"><i></i>Strip · right</li>
+              <li data-on="49"><i></i>Rim · back</li>
+            </ol>
+          </div>
+
+          <div class="film-foot mono">
+            <span>Frame <b id="frameNo">000</b> / 479</span>
+            <span class="film-cue">Scroll to light the studio</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- STATEMENT -->
+    <section class="statement" data-chapter="The studio">
+      <div class="sec-label mono">(01) The studio</div>
+      <p class="statement-text">
+        Fifteen machines, three classes, one rule book. Every price you see is calculated
+        live by a Java object that knows exactly what kind of vehicle it is.
+      </p>
+    </section>
+
+    <!-- RULE BOOK: polymorphism, told horizontally -->
+    <section class="rulebook" id="rates" data-chapter="Rule book">
+      <div class="rb-stage">
+        <header class="rb-head">
+          <div class="sec-label mono">(02) The rule book</div>
+          <h2 class="rb-title">Same days.<br>Different maths.</h2>
+          <div class="rb-days">
+            <span class="mono muted">Rental length</span>
+            <div class="stepper">
+              <button type="button" class="step-btn magnetic" data-step="-1" aria-label="Fewer days">−</button>
+              <span class="mono rb-days-value"><b id="rbDays">5</b> days</span>
+              <button type="button" class="step-btn magnetic" data-step="1" aria-label="More days">+</button>
+            </div>
+          </div>
+        </header>
+
+        <div class="rb-track">
+          <article class="rb-panel" data-id="C-01">
+            <div class="rb-media"><img src="/img/car-amg.jpg" alt="Mercedes-AMG GT"></div>
+            <div class="rb-body">
+              <p class="rb-file mono"><span>Car.java</span><span class="muted">extends Vehicle</span></p>
+              <pre class="rb-code"><code data-code="@Override
+public double calculateRent(int days) {
+    return getRatePerDay() * days;
+}" data-hl="2"></code></pre>
+              <div class="rb-total"><span class="mono muted rb-label">Mercedes-AMG GT</span><span class="odo mono signal" data-quote></span></div>
+            </div>
+          </article>
+
+          <article class="rb-panel" data-id="B-01">
+            <div class="rb-media"><img src="/img/bike-1.jpg" alt="Royal Enfield Continental GT"></div>
+            <div class="rb-body">
+              <p class="rb-file mono"><span>Bike.java</span><span class="muted">extends Vehicle</span></p>
+              <pre class="rb-code"><code data-code="@Override
+public double calculateRent(int days) {
+    double total = getRatePerDay() * days;
+    if (days >= 7) {
+        total = total * 0.80;
+    }
+    return Math.round(total);
+}" data-hl="3,4,5"></code></pre>
+              <div class="rb-total"><span class="mono muted rb-label">Continental GT</span><span class="odo mono signal" data-quote></span></div>
+            </div>
+          </article>
+
+          <article class="rb-panel" data-id="S-01">
+            <div class="rb-media"><img src="/img/suv-1.jpg" alt="Volkswagen Tiguan Allspace"></div>
+            <div class="rb-body">
+              <p class="rb-file mono"><span>SUV.java</span><span class="muted">extends Vehicle</span></p>
+              <pre class="rb-code"><code data-code="@Override
+public double calculateRent(int days) {
+    return Math.round(getRatePerDay() * days * 1.15);
+}" data-hl="2"></code></pre>
+              <div class="rb-total"><span class="mono muted rb-label">Tiguan Allspace</span><span class="odo mono signal" data-quote></span></div>
+            </div>
+          </article>
+
+          <article class="rb-panel rb-late">
+            <div class="rb-body">
+              <p class="rb-file mono"><span>RentalService.java</span><span class="muted">late fee</span></p>
+              <pre class="rb-code"><code data-code="public double calculateLateFee(Booking b, int actualDays) {
+    int extraDays = actualDays - b.getDays();
+    if (extraDays <= 0) {
+        return 0;
+    }
+    return extraDays * b.getVehicle().getRatePerDay() * LATE_MULTIPLIER;
+}" data-hl="5"></code></pre>
+              <p class="rb-note">Every day over the booking costs the daily rate × 1.5. Try it in <a href="#rentals">My rentals</a>.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- FLEET -->
+    <section class="fleet" id="fleet" data-chapter="The fleet">
+      <header class="sec-head">
+        <div class="sec-label mono">(03) The fleet</div>
+        <h2 class="sec-title">Pick your machine</h2>
+        <div class="chips" role="group" aria-label="Filter by type">
+          <button class="chip is-active" data-type="All">All <span class="mono" data-count="All"></span></button>
+          <button class="chip" data-type="Car">Cars <span class="mono" data-count="Car"></span></button>
+          <button class="chip" data-type="Bike">Bikes <span class="mono" data-count="Bike"></span></button>
+          <button class="chip" data-type="SUV">SUVs <span class="mono" data-count="SUV"></span></button>
+        </div>
+      </header>
+      <div class="grid" id="fleetGrid"></div>
+      <p class="fleet-offline mono" hidden>Couldn't reach the Java server. Start it with <code>run.bat</code> and reload.</p>
+    </section>
+
+    <!-- RENTALS -->
+    <section class="rentals" id="rentals" data-chapter="My rentals">
+      <header class="sec-head">
+        <div class="sec-label mono">(04) My rentals</div>
+        <h2 class="sec-title">On the road</h2>
+        <p class="mono muted" id="rentSummary"></p>
+      </header>
+      <p class="rent-tip mono">Tip: set “Days used” higher than the days booked, then Return, to see <b>calculateLateFee()</b> charge 1.5× per extra day.</p>
+      <div class="rent-table">
+        <div class="rent-row rent-headrow mono">
+          <span>Booking</span><span>Vehicle</span><span>Customer</span><span>Days</span><span>Total</span><span>Return</span>
+        </div>
+        <div id="activeList"></div>
+      </div>
+      <h3 class="rent-sub mono">Returned</h3>
+      <div class="rent-table" id="historyList"></div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer" data-chapter="Credits">
+      <div class="marquee mono" aria-hidden="true"><div class="marquee-track" id="marquee"></div></div>
+      <div class="footer-grid">
+        <div>
+          <p class="mono muted">Project</p>
+          <p>AXLE: a vehicle rental system.<br>Object-oriented programming in Java.</p>
+        </div>
+        <div>
+          <p class="mono muted">Built with</p>
+          <p>Java HttpServer · ArrayList<br>Blender · three.js · GSAP · Lenis</p>
+        </div>
+        <div>
+          <p class="mono muted">Credits</p>
+          <p>3D models: “Mercedes-Benz AMG GT 2016” and “Ford F-150 Raptor”, Sketchfab, CC licence.<br>Photos: Unsplash contributors.</p>
+        </div>
+        <a href="#top" class="footer-top mono" data-scramble>Back to top</a>
+        <p class="demo-note mono" hidden>Online demo: the real project runs every price, booking and return in a Java server
+          (<code>RentalService</code>). Here the same rules run in your browser from a snapshot of its data, and bookings stay on this device.
+          <button type="button" class="demo-reset" id="demoReset">Reset demo data</button></p>
+      </div>
+      <div class="wordmark" aria-hidden="true"><span>AXLE</span></div>
+    </footer>
+  </main>
+
+  <!-- DETAIL DRAWER -->
+  <div class="scrim"></div>
+  <aside class="drawer" aria-hidden="true" aria-label="Vehicle details" data-lenis-prevent>
+    <header class="drawer-head mono">
+      <span id="dId"></span>
+      <button class="drawer-close" type="button">Close</button>
+    </header>
+
+    <div class="drawer-body">
+      <div class="drawer-left">
+      <div class="drawer-media">
+        <img id="dImg" alt="">
+        <div class="viewer" id="viewer" data-cursor="Drag"></div>
+        <span class="viewer-hint mono">Live 3D · drag to orbit</span>
+      </div>
+      <div class="drawer-title">
+        <p class="mono muted" id="dType"></p>
+        <h2 id="dName"></h2>
+        <p class="status mono" id="dStatus"><i class="dot"></i><b></b></p>
+      </div>
+
+      <dl class="specs mono">
+        <div class="spec"><dt>Engine</dt><dd id="sEngine"></dd></div>
+        <div class="spec"><dt>Seats</dt><dd id="sSeats"></dd></div>
+        <div class="spec"><dt>Fuel</dt><dd id="sFuel"></dd></div>
+        <div class="spec"><dt>Rate / day</dt><dd id="sRate" class="signal"></dd></div>
+        <div class="spec"><dt>Pricing class</dt><dd id="sRule"></dd></div>
+      </dl>
+      </div>
+
+      <div class="drawer-right">
+      <div class="book">
+        <h3 class="book-title">Book this vehicle</h3>
+        <p class="rented-hint mono" id="rentedHint" hidden>This one is already rented. Book it anyway to watch Java throw
+          <b>VehicleNotAvailableException</b>.</p>
+        <div class="book-progress"><span></span></div>
+        <ol class="book-labels mono">
+          <li class="is-active">01 Duration</li><li>02 Details</li><li>03 Confirm</li>
+        </ol>
+
+        <div class="steps">
+          <div class="track">
+            <section class="step">
+              <div class="days-row">
+                <label for="days" class="mono muted">Days</label>
+                <span class="days-value mono" id="daysValue">3</span>
+              </div>
+              <input type="range" id="days" min="1" max="30" value="3">
+              <div class="quote">
+                <span class="quote-total odo mono signal" id="quoteTotal"></span>
+                <span class="quote-line mono muted" id="quoteLine"></span>
+              </div>
+              <div class="step-actions">
+                <button class="btn btn-signal magnetic" data-next><span>Continue</span></button>
+              </div>
+            </section>
+
+            <section class="step">
+              <label class="field">
+                <span class="mono muted">Full name</span>
+                <input type="text" id="cName" autocomplete="name" placeholder="Your name">
+              </label>
+              <label class="field">
+                <span class="mono muted">Phone</span>
+                <input type="tel" id="cPhone" autocomplete="tel" placeholder="10-digit number">
+              </label>
+              <button type="button" class="demo-fill mono" id="demoFill">Fill demo customer</button>
+              <div class="step-actions">
+                <button class="btn btn-ghost" data-back><span>Back</span></button>
+                <button class="btn btn-signal magnetic" data-next><span>Continue</span></button>
+              </div>
+            </section>
+
+            <section class="step">
+              <dl class="summary mono">
+                <div><dt>Vehicle</dt><dd id="sumVehicle"></dd></div>
+                <div><dt>Customer</dt><dd id="sumCustomer"></dd></div>
+                <div><dt>Days</dt><dd id="sumDays"></dd></div>
+                <div><dt>Total</dt><dd id="sumTotal" class="signal"></dd></div>
+              </dl>
+              <div class="step-actions">
+                <button class="btn btn-ghost" data-back><span>Back</span></button>
+                <button class="btn btn-signal btn-confirm" id="confirmBtn">
+                  <span class="confirm-label">Confirm booking</span>
+                  <svg class="confirm-spin" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/></svg>
+                  <svg class="confirm-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>
+                </button>
+              </div>
+              <p class="java-note mono">Runs <b>RentalService.bookVehicle()</b>, which calls <b>vehicle.rent()</b></p>
+            </section>
+          </div>
+        </div>
+        <p class="book-error mono" role="alert"></p>
+      </div>
+
+      <div class="receipt" hidden>
+        <div class="ticket">
+          <div class="ticket-top">
+            <p class="mono muted">AXLE · Booking confirmed</p>
+            <p class="ticket-id mono" id="tId"></p>
+          </div>
+          <dl class="ticket-rows mono">
+            <div><dt>Vehicle</dt><dd id="tVehicle"></dd></div>
+            <div><dt>Customer</dt><dd id="tCustomer"></dd></div>
+            <div><dt>Days</dt><dd id="tDays"></dd></div>
+          </dl>
+          <div class="tear"></div>
+          <div class="ticket-bottom">
+            <span class="mono muted">Total due</span>
+            <span class="ticket-total mono signal" id="tTotal"></span>
+          </div>
+        </div>
+        <div class="step-actions">
+          <button class="btn btn-ghost" id="toRentals"><span>View my rentals</span></button>
+          <button class="btn btn-signal magnetic" id="bookAnother"><span>Done</span></button>
+        </div>
+      </div>
+      </div>
+    </div>
+  </aside>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>

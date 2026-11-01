@@ -1,0 +1,14 @@
+# build output
+web/
+deploy/
+backend/out/
+frontend/dist/
+
+# dependencies
+node_modules/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
